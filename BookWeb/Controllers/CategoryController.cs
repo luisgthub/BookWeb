@@ -33,7 +33,8 @@ namespace BookWeb.Controllers
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index", "Category");
+                TempData["success"] = "Category created sucessfully";
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -85,6 +86,7 @@ namespace BookWeb.Controllers
             }
             _db.Categories.Remove(obj);
             _db.SaveChanges();
+            TempData["error"] = "Category deleted sucessfully";
             return RedirectToAction("Index");
         }
 

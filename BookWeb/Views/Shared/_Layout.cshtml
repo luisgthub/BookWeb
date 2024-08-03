@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - BookWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>
     <link rel="stylesheet" href="~/BookWeb.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -35,12 +36,13 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_Notifications" />
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container"> Made By Luis Martins
+        <div class="container text-center"> Made By Luis Martins
             &copy; 2024 - BookWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
