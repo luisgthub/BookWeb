@@ -1,4 +1,5 @@
-﻿using BookWeb.Models.Models;
+﻿using BookWeb.DataAccess.Repository.IRepo;
+using BookWeb.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BookWeb.DataAccess.Repository.IRepo
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IProductRepository : IRepository<Product>
     {
-        void Update(Category obj);
+        void Update(Product obj);
 
     }
 }
