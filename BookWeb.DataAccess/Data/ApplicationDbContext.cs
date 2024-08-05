@@ -1,4 +1,4 @@
-﻿using BookWeb.Models;
+﻿using BookWeb.Models.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookWeb.DataAccess.Data

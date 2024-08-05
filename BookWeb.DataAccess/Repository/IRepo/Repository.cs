@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookWeb.DataAccess.Repository.IRepository
+namespace BookWeb.DataAccess.Repository.IRepo
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -15,12 +16,12 @@ namespace BookWeb.DataAccess.Repository.IRepository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            this.dbSet = _db.Set<T>();
+            dbSet = _db.Set<T>();
         }
         public void Add(T entity)
         {
             dbSet.Add(entity);
-            throw new NotImplementedException();
+            
         }
 
         public T Get(Expression<Func<T, bool>> filter)
@@ -39,7 +40,7 @@ namespace BookWeb.DataAccess.Repository.IRepository
         public void Remove(T entity)
         {
             dbSet.Remove(entity);
-          
+
         }
 
     }
