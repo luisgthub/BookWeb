@@ -3,6 +3,7 @@ using BookWeb.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookWeb.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240806172933_addFKey")]
+    partial class addFKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,10 +88,6 @@ namespace BookWeb.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -110,7 +109,6 @@ namespace BookWeb.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "test1",
                             ISBN = "929340",
-                            ImageUrl = "",
                             ListPrice = 100.0,
                             Title = "Book 1"
                         },
@@ -121,7 +119,6 @@ namespace BookWeb.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "test2",
                             ISBN = "929341",
-                            ImageUrl = "",
                             ListPrice = 110.0,
                             Title = "Book 2"
                         },
@@ -132,7 +129,6 @@ namespace BookWeb.DataAccess.Migrations
                             CategoryId = 10,
                             Description = "test3",
                             ISBN = "929342",
-                            ImageUrl = "",
                             ListPrice = 50.0,
                             Title = "Book 3"
                         });

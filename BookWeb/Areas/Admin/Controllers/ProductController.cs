@@ -1,8 +1,12 @@
 ﻿using BookWeb.DataAccess.Data;
 using BookWeb.DataAccess.Repository.IRepo;
 using BookWeb.Models.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
+using BookWeb.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Data;
 
 namespace BookWeb.Areas.Admin.Controllers
 {
@@ -20,25 +24,63 @@ namespace BookWeb.Areas.Admin.Controllers
             return View(objProductList);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Product obj)
-        {
-          
-            if (ModelState.IsValid)
+            ProductViewModel productViewModel = new()
             {
-                _unitOfWork.Product.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product created sucessfully";
-                return RedirectToAction("Index");
+                CategoryList = (IEnumerable<SelectListItem>)_unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                Product = new Product()
+            };
+            if (id == null || id == 0)
+            {
+                //create
+                return View(productViewModel);
             }
-            return View();
+            else
+            {
+                //update
+                productViewModel.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productViewModel);
+            }
+
         }
 
-        public IActionResult Edit(int? id)
+        [HttpPost]
+        public IActionResult Upsert(ProductViewModel productViewModel)
+        {
+          
+                if (ModelState.IsValid)
+                {
+                    
+                    if (productViewModel.Product.Id == 0)
+                    {
+                        _unitOfWork.Product.Add(productViewModel.Product);
+                    }
+                    else
+                    {
+                        _unitOfWork.Product.Update(productViewModel.Product);
+                    }
+
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product created successfully";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    productViewModel.CategoryList = (IEnumerable<SelectListItem>)_unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    });
+                    return View(productViewModel);
+                }
+            }
+        
+            public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
