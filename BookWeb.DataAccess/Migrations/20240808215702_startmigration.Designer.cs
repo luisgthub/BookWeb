@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookWeb.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240806174453_addImageUrl")]
-    partial class addImageUrl
+    [Migration("20240808215702_startmigration")]
+    partial class startmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -132,7 +132,7 @@ namespace BookWeb.DataAccess.Migrations
                         {
                             Id = 3,
                             Author = "Author test3",
-                            CategoryId = 10,
+                            CategoryId = 3,
                             Description = "test3",
                             ISBN = "929342",
                             ImageUrl = "",

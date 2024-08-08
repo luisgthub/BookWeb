@@ -20,4 +20,8 @@
     <ProjectReference Include="..\BookWeb.Utils\BookWeb.Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

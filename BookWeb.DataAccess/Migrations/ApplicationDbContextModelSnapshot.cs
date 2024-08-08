@@ -86,7 +86,6 @@ namespace BookWeb.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("ListPrice")
@@ -129,7 +128,7 @@ namespace BookWeb.DataAccess.Migrations
                         {
                             Id = 3,
                             Author = "Author test3",
-                            CategoryId = 10,
+                            CategoryId = 3,
                             Description = "test3",
                             ISBN = "929342",
                             ImageUrl = "",

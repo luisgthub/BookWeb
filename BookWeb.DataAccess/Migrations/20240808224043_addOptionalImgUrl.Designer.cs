@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookWeb.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240806172933_addFKey")]
-    partial class addFKey
+    [Migration("20240808224043_addOptionalImgUrl")]
+    partial class addOptionalImgUrl
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,6 +88,9 @@ namespace BookWeb.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -109,6 +112,7 @@ namespace BookWeb.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "test1",
                             ISBN = "929340",
+                            ImageUrl = "",
                             ListPrice = 100.0,
                             Title = "Book 1"
                         },
@@ -119,6 +123,7 @@ namespace BookWeb.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "test2",
                             ISBN = "929341",
+                            ImageUrl = "",
                             ListPrice = 110.0,
                             Title = "Book 2"
                         },
@@ -126,9 +131,10 @@ namespace BookWeb.DataAccess.Migrations
                         {
                             Id = 3,
                             Author = "Author test3",
-                            CategoryId = 10,
+                            CategoryId = 3,
                             Description = "test3",
                             ISBN = "929342",
+                            ImageUrl = "",
                             ListPrice = 50.0,
                             Title = "Book 3"
                         });
