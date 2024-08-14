@@ -64,6 +64,15 @@ namespace BookWeb.Areas.Admin.Controllers
                     //random name to file + extension name
                     string fileName = Guid.NewGuid().ToString() +Path.GetExtension(file.FileName); 
                     string productPath = Path.Combine(wwwRootPath, @"images\product");
+
+                    if (!string.IsNullOrEmpty(productViewModel.Product.ImageUrl))
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath,productViewModel.Product.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
                     
                     using(var fileStream = new FileStream(Path.Combine(productPath,fileName),
                         FileMode.Create))
